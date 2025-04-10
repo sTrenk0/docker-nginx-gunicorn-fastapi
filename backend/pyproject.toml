@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "docker-nginx-gunicorn-fastapi"
+version = "0.1.0"
+description = ""
+readme = "README.md"
+package-mode = false
+
+
+[tool.poetry.dependencies]
+python = ">=3.10.0, <3.11.0" # [!] Sould match the version in Dockerfile
+# It is best practice to specify the dependency version range,
+# specify a specific MINOR version and all PATCHES.
+fastapi = { version = "^0.115.0", extras = ["standard"] }
+pydantic-settings = "^2.8.0"
+gunicorn = "^23.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
