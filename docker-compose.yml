@@ -1,0 +1,44 @@
+services:
+  app:
+    container_name: app
+    logging:
+      driver: "local"
+      options:
+        max-size: "50m"
+        max-file: "5"
+        mode: "blocking"
+    build: ./backend
+    depends_on:
+      - nginx
+    env_file:
+      - .backend.env
+    volumes:
+      - gunicorn_sock:/tmp/gunicorn_socket
+    restart: unless-stopped
+
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx
+    logging:
+      driver: "local"
+      options:
+        max-size: "50m"
+        max-file: "5"
+        mode: "non-blocking"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./src:/usr/share/nginx/html:ro
+      - gunicorn_sock:/tmp/gunicorn_socket
+    env_file:
+      - .nginx.env
+    restart: unless-stopped
+    ports:
+      - "80:80"
+
+
+
+
+volumes:
+  gunicorn_sock:
+    external: false
