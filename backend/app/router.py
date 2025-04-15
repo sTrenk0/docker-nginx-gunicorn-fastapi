@@ -16,7 +16,7 @@ def get_api_answer(request: Request):
     return {"result": f"Rest api answer you, congratulations! Time epoch: {time.time()}"}
 
 
-@api_router.get("/headers/")
+@api_router.get("/headers")
 def get_headers(request: Request):
     logger.info("Hello, from app! Processing your http request...")
     return request.headers
