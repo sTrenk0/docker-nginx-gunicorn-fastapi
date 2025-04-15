@@ -28,7 +28,7 @@ def get_internal_error(request: Request):
     return ...
 
 
-@ws_router.websocket("/ws/")
+@ws_router.websocket("/ws")
 async def get_ws_answer(websocket: WebSocket):
     await websocket.accept()
     logger.info("Hello, from app! Processing your ws request...")
