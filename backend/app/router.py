@@ -22,7 +22,7 @@ def get_headers(request: Request):
     return request.headers
 
 
-@api_router.get("/errors/internal/")
+@api_router.get("/errors/internal")
 def get_internal_error(request: Request):
     1 / 0
     return ...
